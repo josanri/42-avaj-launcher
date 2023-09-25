@@ -1,0 +1,6 @@
+.idea/*
+.vscode/*
+avaj-launcher.iml
+src/**/*.class
+scenario.txt
+simulation.txt
