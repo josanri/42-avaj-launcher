@@ -12,6 +12,8 @@ public class Coordinates {
             throw new IllegalArgumentException("latitude cannot be a negative number");
         if (height <= 0)
             throw new IllegalArgumentException("height cannot be a negative number or zero as a starting value");
+        if (height > 100)
+            throw new IllegalArgumentException("height cannot be a higher than 100.");
         this.longitude = longitude;
         this.latitude = latitude;
         this.height = height;
