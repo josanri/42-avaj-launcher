@@ -24,7 +24,7 @@ public class Helicopter extends Aircraft {
                 System.out.println(this + ": This is not looking good");
             }
             case "SNOW" -> {
-                this.coordinate.updateHeight(12);
+                this.coordinate.updateHeight(-12);
                 System.out.println(this + ": My rotor is going to freeze!");
             }
         }
