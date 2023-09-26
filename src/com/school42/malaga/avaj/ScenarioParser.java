@@ -34,21 +34,27 @@ public class ScenarioParser {
                 String[] line = sc.nextLine().split(" ");
                 if (line.length != 5)
                     throw new ParserException("Error on a line number " + lineNumber + ":\nFormat: <Type> <Identifier> <longitude> <latitude> <height>.");
-                String type = line[0];
-                String name = line[1];
-                int longitude = Integer.parseInt(line[2]);
-                int latitude = Integer.parseInt(line[3]);
-                int height = Integer.parseInt(line[4]);
                 try {
+                    String type = line[0].trim();
+                    String name = line[1].trim();
+                    if (type.length() == 0)
+                        throw new ParserException("On a line number " + lineNumber + ", type cannot be empty.");
+                    if (name.length() == 0)
+                        throw new ParserException("On a line number " + lineNumber + ", type cannot be empty.");
+                    int longitude = Integer.parseInt(line[2]);
+                    int latitude = Integer.parseInt(line[3]);
+                    int height = Integer.parseInt(line[4]);
                     flyableSet.add(aircraftFactory.newAircraft(type,
                             name,
                             new Coordinates(longitude,
                                     latitude,
                                     height)));
+                    lineNumber++;
+                } catch (NumberFormatException e) {
+                    throw new ParserException("On a line number " + lineNumber + ", expected a number.");
                 } catch (IllegalArgumentException e) {
-                    throw new ParserException("Error on a line number " + lineNumber + ":\n" + e.getMessage());
+                    throw new ParserException("On a line number " + lineNumber + ", " + e.getMessage());
                 }
-                lineNumber++;
             }
             if (flyableSet.size() == 0)
                 throw new ParserException("Could not find any aircraft line.");

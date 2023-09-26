@@ -22,7 +22,7 @@ public class Simulator {
         } catch (FileNotFoundException e) {
             handleSimulationException(originalStdout, "Error: File '" + filename + "' could not be found");
         } catch (ParserException e) {
-            handleSimulationException(originalStdout, "Error while parsing: " + e.getMessage());
+            handleSimulationException(originalStdout, "Error while parsing:\n" + e.getMessage());
         } catch (Exception e) {
             handleSimulationException(originalStdout, "Error: " + e);
         }
